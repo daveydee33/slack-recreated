@@ -1,6 +1,14 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { HiOutlinePencilAlt, HiChevronDown } from "react-icons/hi";
+import {
+  HiOutlinePencilAlt,
+  HiChevronDown,
+  HiOutlineChatAlt2,
+  HiOutlineBookmark,
+  HiOutlineOfficeBuilding,
+  HiDotsVertical,
+} from "react-icons/hi";
+import { GoMention } from "react-icons/go";
 
 export default function Vanilla() {
   return (
@@ -80,6 +88,11 @@ export default function Vanilla() {
               align-items: center;
               border-bottom: 1px solid rgb(82, 38, 83);
               padding: 10px;
+              &:hover {
+                /* background-color: orange; */
+                background-color: #340e36;
+                cursor: pointer;
+              }
             `}
           >
             <div>
@@ -106,7 +119,51 @@ export default function Vanilla() {
               {/* Seems like the icon just needs to have a max size, but will shrink depending on the button size */}
               <HiOutlinePencilAlt size={"20px"} />
             </button>
-            {/* <HiOutlinePencilAlt size={"20px"} /> */}
+          </div>
+
+          {/* Navigation section 2 (Threads, Mentions, Saved Items) */}
+          <div
+            css={css`
+              color: rgba(255, 255, 255, 0.7);
+              padding: 16px 0;
+              /* border-bottom: 1px solid rgb(82, 38, 83); */
+              display: flex;
+              flex-direction: column;
+              /* gap: 8px; */
+              div {
+                /* display: flex; */
+                /* align-content: center; */
+                /* height: 28px; */
+                /* line-height: 30px; // or increase the TOP padding/margin */
+                padding: 0 11px;
+                height: 28px;
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                gap: 2px;
+
+                &:hover {
+                  /* background-color: orange; */
+                  background-color: #340e36;
+                }
+              }
+            `}
+          >
+            <div>
+              <HiOutlineChatAlt2 /> Threads
+            </div>
+            <div>
+              <GoMention /> Mentions & reactions
+            </div>
+            <div>
+              <HiOutlineBookmark /> Saved Items
+            </div>
+            <div>
+              <HiOutlineOfficeBuilding /> Slack Connect
+            </div>
+            <div>
+              <HiDotsVertical /> More
+            </div>
           </div>
         </div>
         <div className={"panel chat"}>chat</div>
