@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
+import { HiOutlinePencilAlt, HiChevronDown } from "react-icons/hi";
 
 export default function Vanilla() {
   return (
@@ -31,7 +32,7 @@ export default function Vanilla() {
           /* gap: 5px; */
 
           .panel {
-            padding: 5px;
+            /* padding: 5px; */
             /* border: 1px solid gray; */
             /* border-color: rgb(82, 38, 83); */
             /* border-radius: 0.25px; */
@@ -67,7 +68,47 @@ export default function Vanilla() {
         `}
       >
         <div className={"panel workspaces"}>workspaces</div>
-        <div className={"panel navigation"}>navigation</div>
+        <div className={"panel navigation"}>
+          <div
+            css={css`
+              display: flex;
+              /* align-items: stretch; */
+              /* background: var(--p-channel_sidebar__column-bg); */
+              height: 50px;
+              /* position: relative; */
+              justify-content: space-between;
+              align-items: center;
+              border-bottom: 1px solid rgb(82, 38, 83);
+              padding: 10px;
+            `}
+          >
+            <div>
+              Great Minds
+              <span
+                css={css`
+                  padding: 4px;
+                `}
+              >
+                <HiChevronDown />
+              </span>
+            </div>
+            <button
+              css={css`
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 100%;
+                border: none;
+                height: 32px;
+                width: 32px;
+              `}
+            >
+              {/* Seems like the icon just needs to have a max size, but will shrink depending on the button size */}
+              <HiOutlinePencilAlt size={"20px"} />
+            </button>
+            {/* <HiOutlinePencilAlt size={"20px"} /> */}
+          </div>
+        </div>
         <div className={"panel chat"}>chat</div>
       </div>
     </div>
