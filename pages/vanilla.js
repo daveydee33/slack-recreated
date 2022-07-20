@@ -22,6 +22,9 @@ export default function Vanilla() {
         flex-direction: column;
         height: 100vh;
         color: white; // #FFFFFF
+        svg {
+          cursor: pointer; // just a trick to make them seem like buttons for this UI demo
+        }
       `}
     >
       {/* Break */}
@@ -37,6 +40,7 @@ export default function Vanilla() {
           * {
             color: white;
             opacity: 0.9;
+            font-size: 20px; // for the icons, and then override to decrease for the 'Search' text.
           }
         `}
       >
@@ -69,11 +73,14 @@ export default function Vanilla() {
               border: 0;
               height: 24px;
               border-radius: 5px;
+              * {
+                font-size: 13px;
+              }
               /* margin: 20px; */
             `}
           >
             <HiSearch />
-            Search
+            <span>Search</span>
           </button>
         </div>
         <div
@@ -229,7 +236,37 @@ export default function Vanilla() {
             </div>
           </div>
         </div>
-        <div className={"panel chat"}>chat</div>
+        <div
+          className={"panel chat"}
+          css={css`
+            display: flex;
+            flex-direction: column;
+            > div {
+              padding: 10px;
+            }
+          `}
+        >
+          <div
+            css={css`
+              background-color: white;
+              height: 50px;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            `}
+          >
+            <h3>Chat</h3>
+            {/* <span>Icons, etc</span> */}
+          </div>
+          <div
+            css={css`
+              flex: 1;
+              background-color: #f8f8f8;
+            `}
+          >
+            ...
+          </div>
+        </div>
       </div>
     </div>
   );
