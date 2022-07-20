@@ -11,10 +11,26 @@ import {
   HiOutlineClock,
   HiOutlineQuestionMarkCircle,
   HiUserCircle,
+  HiChevronRight,
+  HiOutlineChevronRight,
+  HiHashtag,
 } from "react-icons/hi";
 import { GoMention } from "react-icons/go";
+import { useState } from "react";
 
 export default function Vanilla() {
+  const channelNames = [
+    "general",
+    "tech",
+    "questions",
+    "jokes and humor",
+    "admin",
+  ];
+  const names = ["Dan", "Ben", "Alex", "Brian", "Keith", "Dave", "Danielle"];
+  const [isChannelsOpen, setIsChannelsOpen] = useState(true);
+  const [isNamesOpen, setIsNamesOpen] = useState(true);
+  const [panelTitle, setPanelTitle] = useState("Chat");
+
   return (
     <div
       css={css`
@@ -24,6 +40,9 @@ export default function Vanilla() {
         color: white; // #FFFFFF
         svg {
           cursor: pointer; // just a trick to make them seem like buttons for this UI demo
+        }
+        .button {
+          cursor: pointer;
         }
       `}
     >
@@ -146,7 +165,16 @@ export default function Vanilla() {
         `}
       >
         <div className={"panel workspaces"}>workspaces</div>
-        <div className={"panel navigation"}>
+        <div
+          className={"panel navigation"}
+          css={css`
+            > div {
+              // styled to apply to all the sections on the names/channels panels
+              padding: 10px;
+              color: rgba(255, 255, 255, 0.7); // color white, opacity 70%
+            }
+          `}
+        >
           <div
             css={css`
               display: flex;
@@ -157,7 +185,6 @@ export default function Vanilla() {
               justify-content: space-between;
               align-items: center;
               border-bottom: 1px solid rgb(82, 38, 83);
-              padding: 10px;
               &:hover {
                 /* background-color: orange; */
                 background-color: #340e36;
@@ -190,28 +217,19 @@ export default function Vanilla() {
               <HiOutlinePencilAlt size={"20px"} />
             </button>
           </div>
-
           {/* Navigation section 2 (Threads, Mentions, Saved Items) */}
           <div
             css={css`
-              color: rgba(255, 255, 255, 0.7);
-              padding: 16px 0;
-              /* border-bottom: 1px solid rgb(82, 38, 83); */
               display: flex;
               flex-direction: column;
-              /* gap: 8px; */
+              border-bottom: 1px solid rgb(82, 38, 83);
               div {
-                /* display: flex; */
-                /* align-content: center; */
-                /* height: 28px; */
-                /* line-height: 30px; // or increase the TOP padding/margin */
                 padding: 0 11px;
                 height: 28px;
                 display: flex;
                 align-items: center;
                 cursor: pointer;
                 gap: 2px;
-
                 &:hover {
                   /* background-color: orange; */
                   background-color: #340e36;
@@ -219,23 +237,93 @@ export default function Vanilla() {
               }
             `}
           >
-            <div>
+            <div onClick={() => setPanelTitle("Threads")}>
               <HiOutlineChatAlt2 /> Threads
             </div>
-            <div>
+            <div onClick={() => setPanelTitle("Mentions & reactions")}>
               <GoMention /> Mentions & reactions
             </div>
-            <div>
+            <div onClick={() => setPanelTitle("Saved Items")}>
               <HiOutlineBookmark /> Saved Items
             </div>
-            <div>
+            <div onClick={() => setPanelTitle("Slack Connect")}>
               <HiOutlineOfficeBuilding /> Slack Connect
             </div>
-            <div>
+            <div onClick={() => setPanelTitle("More")}>
               <HiDotsVertical /> More
             </div>
           </div>
+
+          {/* Channels / Direct Messages */}
+          <div
+            css={css`
+              > div {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                gap: 2px;
+                padding: 0 11px;
+                height: 28px;
+              }
+              .channel-content {
+                &:hover {
+                  background-color: #340e36;
+                  cursor: pointer;
+                }
+              }
+            `}
+          >
+            <div
+              className="button"
+              onClick={() => setIsChannelsOpen((prev) => !prev)}
+            >
+              {isChannelsOpen ? <HiChevronDown /> : <HiChevronRight />}
+              <span>Channels</span>
+            </div>
+            {/* Individual Channels here */}
+
+            {/* List of Channels */}
+            {isChannelsOpen &&
+              channelNames.map((name) => (
+                <div className="channel-content" key={name}>
+                  <HiHashtag />
+                  {name}
+                </div>
+              ))}
+
+            {/* End list of channels */}
+          </div>
+          <div
+            css={css`
+              > div {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                gap: 2px;
+                padding: 0 11px;
+                height: 28px;
+              }
+            `}
+          >
+            <div
+              onClick={() => setIsNamesOpen((prev) => !prev)}
+              className="button"
+            >
+              <HiChevronRight />
+              Direct Messages
+            </div>
+
+            {isNamesOpen &&
+              names.map((name) => (
+                <div className="direct-messages-content" key={name}>
+                  {name}
+                </div>
+              ))}
+          </div>
         </div>
+        {/* Channels */}
+
+        {/* Panel Chat */}
         <div
           className={"panel chat"}
           css={css`
@@ -253,9 +341,10 @@ export default function Vanilla() {
               display: flex;
               justify-content: space-between;
               align-items: center;
+              border-bottom: 1px solid lightgray;
             `}
           >
-            <h3>Chat</h3>
+            <h3>{panelTitle || "Chat"}</h3>
             {/* <span>Icons, etc</span> */}
           </div>
           <div
