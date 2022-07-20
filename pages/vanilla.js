@@ -276,6 +276,13 @@ export default function Vanilla() {
             <div
               className="button"
               onClick={() => setIsChannelsOpen((prev) => !prev)}
+              css={css`
+                ${!isChannelsOpen &&
+                css`
+                  color: white; // full opacity
+                  font-weight: bold;
+                `}
+              `}
             >
               {isChannelsOpen ? <HiChevronDown /> : <HiChevronRight />}
               <span>Channels</span>
@@ -307,15 +314,23 @@ export default function Vanilla() {
           >
             <div
               onClick={() => setIsNamesOpen((prev) => !prev)}
+              css={css`
+                ${!isNamesOpen &&
+                css`
+                  color: white; // full opacity
+                  font-weight: bold;
+                `}
+              `}
               className="button"
             >
               <HiChevronRight />
-              Direct Messages
+              <span>Direct Messages</span>
             </div>
 
             {isNamesOpen &&
               names.map((name) => (
-                <div className="direct-messages-content" key={name}>
+                <div className="direct-messages-content button" key={name}>
+                  {/* <HiUserCircle /> */}
                   {name}
                 </div>
               ))}
