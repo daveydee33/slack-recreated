@@ -7,6 +7,10 @@ import {
   HiOutlineBookmark,
   HiOutlineOfficeBuilding,
   HiDotsVertical,
+  HiSearch,
+  HiOutlineClock,
+  HiOutlineQuestionMarkCircle,
+  HiUserCircle,
 } from "react-icons/hi";
 import { GoMention } from "react-icons/go";
 
@@ -20,16 +24,75 @@ export default function Vanilla() {
         color: white; // #FFFFFF
       `}
     >
+      {/* Break */}
       <div
         className="nav"
         css={css`
           background: #350d36;
-          box-shadow: 0 1px 0 0 rgb(255 255 255 / 10%);
+          /* box-shadow: 0 1px 0 0 rgb(255 255 255 / 10%); */
           height: 45px;
+          display: flex;
+          justify-content: space-around;
+          gap: 20px;
+          * {
+            color: white;
+            opacity: 0.9;
+          }
         `}
       >
-        header..
+        <div
+          css={css`
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+          `}
+        >
+          <HiOutlineClock />
+        </div>
+        <div
+          css={css`
+            flex: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          `}
+        >
+          <button
+            css={css`
+              width: 100%;
+              background-color: #644665;
+              display: flex;
+              gap: 5px;
+              justify-content: center;
+              align-items: center;
+              border: 0;
+              height: 24px;
+              border-radius: 5px;
+              /* margin: 20px; */
+            `}
+          >
+            <HiSearch />
+            Search
+          </button>
+        </div>
+        <div
+          css={css`
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 0 20px;
+            gap: 10px;
+          `}
+        >
+          <HiOutlineQuestionMarkCircle />
+          <HiUserCircle />
+        </div>
       </div>
+      {/* Break */}
+
+      {/* Break */}
       <div
         css={css`
           display: flex;
