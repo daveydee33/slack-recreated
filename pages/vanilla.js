@@ -164,7 +164,7 @@ export default function Vanilla() {
           /* justify-items: space-between; */
         `}
       >
-        <div className={"panel workspaces"}>workspaces</div>
+        {/* <div className={"panel workspaces"}>workspaces</div> */}
         <div
           className={"panel navigation"}
           css={css`
